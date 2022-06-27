@@ -28,6 +28,8 @@ def get_action_choice():
 
 def add_restaurant(scores_dict):
 
+    process_scores()
+
     restaurant = input("Restaurant name> ")
     score = get_score("Rating> ")
     scores_dict[restaurant] = score
@@ -48,6 +50,8 @@ def get_score(prompt):
 
 
 def rate_random_restaurant(scores_dict):
+
+    process_scores()
 
     restaurant, rating = random.choice(scores_dict.items())
 
@@ -78,21 +82,19 @@ def rate_specific_restaurant(scores_dict):
 
 def print_sorted_scores(scores_dict):
 
+    process_scores()
+
     for restaurant, rating in sorted(scores_dict):
         print(f"{restaurant} is rated at {rating}.")
 
 
 def main():
 
-    get_action_choice()
-
     scores_dict = {}
  
     while True:
 
         action = get_action_choice()
-
-        process_scores()
 
         if action == 1:
             print_sorted_scores(scores_dict)
