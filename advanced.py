@@ -86,11 +86,13 @@ def main():
 
     get_action_choice()
 
-    process_scores()
-    
+    scores_dict = {}
+ 
     while True:
 
         action = get_action_choice()
+
+        process_scores()
 
         if action == 1:
             print_sorted_scores(scores_dict)
