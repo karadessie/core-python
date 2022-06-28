@@ -9,6 +9,7 @@ def process_scores():
     f = open("scores.txt", "r")
     for line in f:
         key_value = line.rstrip().split(":")
+        
         print("Key_value: ", key_value)
         scores_dict[key_value[i]] = key_value[i + 1]
     
@@ -28,11 +29,13 @@ def get_action_choice():
 
 def add_restaurant(scores_dict):
 
+    print_sorted_scores()
+
     restaurant = input("Restaurant name> ")
-    score = get_score("Rating> ")
-    scores_dict[score] = restaurant
+    score = input("Rating> ")
+    scores_dict[restaurant] = score
     print(scores_dict)
-    return(scores_dict)
+    return
 
 def get_score(prompt):
 
@@ -55,10 +58,10 @@ def rate_random_restaurant(scores_dict):
 
     restaurant_list = list(scores_dict.items())
 
-    restaurant, score = random.choice(restaurant_list)
-    print(f"The current rating for {restaurant} is {score}.")
+    random_keyvalue = random.choice(restaurant_list)
+    print(f"The current rating is {random_keyvalue}")
     new_score = input(f"What is your rating? ")
-    scores_dict[restaurant] = new_score
+    scores_dict[random_keyvalue] = new_score
 
 
 def rate_specific_restaurant(scores_dict):
@@ -93,7 +96,6 @@ def print_sorted_scores(scores_dict):
 def main():
 
     scores_dict = {}
-    process_scores()
  
     while True:
 
