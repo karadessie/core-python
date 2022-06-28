@@ -8,10 +8,9 @@ def process_scores():
     
     f = open("scores.txt", "r")
     for line in f:
-        key_value = line.rstrip().split(":")
-        
-        print("Key_value: ", key_value)
-        scores_dict[key_value[i]] = key_value[i + 1]
+        (restaurant, score) = line.rstrip().split(":")
+        print(restaurant, score)
+        scores_dict[restaurant] = int(score)
     
     return scores_dict
 
@@ -29,13 +28,13 @@ def get_action_choice():
 
 def add_restaurant(scores_dict):
 
-    print_sorted_scores()
+    process_scores()
 
     restaurant = input("Restaurant name> ")
     score = input("Rating> ")
     scores_dict[restaurant] = score
     print(scores_dict)
-    return
+    return(scores_dict)
 
 def get_score(prompt):
 
