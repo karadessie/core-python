@@ -28,12 +28,11 @@ def get_action_choice():
 
 def add_restaurant(scores_dict):
 
-    process_scores()
-
     restaurant = input("Restaurant name> ")
     score = get_score("Rating> ")
-    scores_dict[restaurant] = score
-
+    scores_dict[score] = restaurant
+    print(scores_dict)
+    return(scores_dict)
 
 def get_score(prompt):
 
@@ -51,46 +50,50 @@ def get_score(prompt):
 
 def rate_random_restaurant(scores_dict):
 
+    scores_dict = {}
     process_scores()
 
-    restaurant, rating = random.choice(scores_dict.items())
+    restaurant_list = list(scores_dict.items())
 
-    print(f"The current rating for {restaurant} is {rating}.")
-    new_rating = get_score(f"What is your rating for {restaurant}? ")
-
-    scores_dict[restaurant] = new_rating
+    restaurant, score = random.choice(restaurant_list)
+    print(f"The current rating for {restaurant} is {score}.")
+    new_score = input(f"What is your rating? ")
+    scores_dict[restaurant] = new_score
 
 
 def rate_specific_restaurant(scores_dict):
 
-    print_sorted_scores(scores_dict)
+    scores_dict = {}
+    process_scores()
 
-    while True:
-        print("\nWhich restaurant would you like to update?")
-        print("Please enter the name exactly as it appears above.")
-        restaurant = input("> ")
 
-        if restaurant in scores_dict:
-            rating = scores_dict[restaurant]
-            print(f"The current rating for {restaurant} is {rating}.")
-            new_rating = get_score(f"What is your rating for {restaurant}? ")
-        else:
-            print("That's not one of the restaurants above. Please try again.")
+    print("\nWhich restaurant would you like to update?")
+    print("Please enter the name exactly as it appears above.")
+    restaurant = input("> ")
 
+    for restaurant in scores_dict.values():
+        rating = scores_dict[restaurant]
+        print(f"The current rating for {restaurant} is {rating}.")
+        new_rating = input(f"What is your rating for {restaurant}? ")
         scores_dict[restaurant] = new_rating
-
+        return(scores_dict)
+    else:
+        print("That's not one of the restaurants above. Please try again.")
 
 def print_sorted_scores(scores_dict):
 
     process_scores()
 
-    for restaurant, rating in sorted(scores_dict):
-        print(f"{restaurant} is rated at {rating}.")
+    restaurant_list = list(scores_dict.items())
+
+    for restaurant, score in sorted(restaurant_list):
+       print(f"{restaurant} is rated at {score}.")
 
 
 def main():
 
     scores_dict = {}
+    process_scores()
  
     while True:
 
